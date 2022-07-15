@@ -1,0 +1,22 @@
+# Compiled binaries
+hotel
+hotel.exe
+*.out
+*.exe
+
+# Object files / build artifacts
+*.o
+*.obj
+*.a
+*.lib
+build/
+bin/
+obj/
+
+# Editor / OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*~
