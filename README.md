@@ -1,12 +1,19 @@
 # Hotel Management System (C++)
 
+[![Build](https://github.com/QiratFatima0142/hotel-management-system-cpp/actions/workflows/build.yml/badge.svg)](https://github.com/QiratFatima0142/hotel-management-system-cpp/actions/workflows/build.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Language: C++11](https://img.shields.io/badge/C%2B%2B-11-blue.svg)](https://isocpp.org/)
+[![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20macOS%20%7C%20Windows-lightgrey.svg)]()
+[![Style: single-file](https://img.shields.io/badge/style-single--file-informational.svg)]()
+
 A **menu-driven console application** built in C++ that simulates the daily
-operations of a small hotel — adding customers, booking rooms, managing
-check-in / check-out, tracking availability, and generating a final bill.
+operations of a small hotel — adding customers with family details, booking
+rooms by type and date, tracking availability, managing check-in /
+check-out, and generating a formatted invoice.
 
 > Built as an **Introduction to Computers / C++** course project after
 > ~4 months of study. The entire program lives inside `main()` (no
-> user-defined functions) so that every beginner can read it top-to-bottom.
+> user-defined functions) so every beginner can read it top-to-bottom.
 
 ---
 
@@ -91,14 +98,22 @@ logic — so booking **Jan 31 for 3 days** correctly yields **Feb 2**.
 ## Folder Structure
 
 ```
-HotelManagementSystem/
+hotel-management-system-cpp/
 │
 ├── src/
-│   └── main.cpp           # Entire program (single-file project)
+│   └── main.cpp              # Entire program (single-file, all in main)
 │
-├── docs/                  # (optional) put screenshots / reports here
+├── docs/                     # Screenshots, reports, extra docs
 │
-└── README.md              # This file
+├── .github/
+│   └── workflows/
+│       └── build.yml         # CI: compile + smoke test on Ubuntu + macOS
+│
+├── Makefile                  # make / make run / make clean
+├── .editorconfig             # Consistent formatting across editors
+├── .gitignore                # Ignores the compiled binary, OS junk, etc.
+├── LICENSE                   # MIT License
+└── README.md                 # This file
 ```
 
 Just **one** source file — easy to submit, easy to grade, easy to read.
@@ -107,27 +122,41 @@ Just **one** source file — easy to submit, easy to grade, easy to read.
 
 ## How to Build & Run
 
-### Using g++ (Linux / macOS / MinGW on Windows)
+### Option A — Using the provided Makefile (recommended)
 
 ```bash
-cd HotelManagementSystem
-g++ -std=c++11 -Wall -o hotel src/main.cpp
+git clone https://github.com/QiratFatima0142/hotel-management-system-cpp.git
+cd hotel-management-system-cpp
+make run           # compile and launch
+make clean         # remove the compiled binary
+```
+
+### Option B — Plain `g++` (Linux / macOS / MinGW on Windows)
+
+```bash
+g++ -std=c++11 -Wall -Wextra -Wpedantic -O2 -o hotel src/main.cpp
 ./hotel
 ```
 
-### Using Visual Studio (Windows)
+### Option C — Visual Studio (Windows)
 
 1. Create a new **Empty C++ Project**.
 2. Right-click **Source Files → Add → Existing Item…** and pick `src/main.cpp`.
 3. Press `Ctrl + F5` to build and run.
 
-### Using Code::Blocks / Dev-C++
+### Option D — Code::Blocks / Dev-C++
 
 1. Open `src/main.cpp`.
 2. Press `F9` (Build & Run).
 
 > Requires any compiler that supports **C++11** or newer
 > (all modern compilers do).
+
+### Continuous Integration
+
+Every push to `main` is automatically compiled on **Ubuntu** and **macOS**
+with the strictest warning flags (`-Wall -Wextra -Wpedantic`) via GitHub
+Actions — see the **Build** badge at the top of this README.
 
 ---
 
@@ -471,7 +500,33 @@ If you want to extend this for a bigger project:
 
 ## Author
 
-Created as a portfolio project for a Computer Science student learning
-C++. Feel free to fork, study, and extend.
+**Qirat Fatima**
+Computer Science student — Introduction to Computers / C++
 
-If this project helped you, leave a ⭐ on the repo!
+- GitHub: [@QiratFatima0142](https://github.com/QiratFatima0142)
+- Project: [hotel-management-system-cpp](https://github.com/QiratFatima0142/hotel-management-system-cpp)
+
+If this project helped you, a star on the repo is very appreciated.
+
+---
+
+## License
+
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE)
+file for details. You are free to fork, study, and extend it.
+
+---
+
+## Contributing
+
+This is primarily a personal / course project, but suggestions and pull
+requests are welcome. If you'd like to contribute:
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feat/my-feature`)
+3. Commit your changes (`git commit -m "feat: add my feature"`)
+4. Push to the branch (`git push origin feat/my-feature`)
+5. Open a Pull Request
+
+Please run the build locally (`make`) before submitting a PR so the CI
+stays green.
